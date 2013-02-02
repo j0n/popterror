@@ -1,0 +1,48 @@
+/* line 3, sass/master.sass */
+html {
+  height: 100%;
+  width: 100%;
+}
+
+/* line 7, sass/master.sass */
+body {
+  background: #a6fff9;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+/* line 14, sass/master.sass */
+canvas {
+  height: 100%;
+  width: 100%;
+}
+
+/* line 18, sass/master.sass */
+#content {
+  background: transparent url("../gfx/skogn.png") left bottom repeat-x;
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  max-height: 640px;
+  position: absolute;
+  right: 0;
+  width: 100%;
+}
+
+/* line 27, sass/master.sass */
+#car {
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -ms-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  position: absolute;
+  background: red;
+  left: 50px;
+  bottom: 0px;
+  height: 80px;
+  width: 80px;
+  display: none;
+}

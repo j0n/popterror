@@ -1,0 +1,35 @@
+@import "compass"
+
+html
+  height: 100%
+  width: 100%
+
+body
+  background: #a6fff9
+  height: 100%
+  margin: 0
+  padding: 0
+  width: 100%
+
+canvas
+  height: 100%
+  width: 100%
+
+#content
+  background: transparent url('../gfx/skogn.png') left bottom repeat-x
+  bottom: 0
+  height: 100%
+  left: 0
+  max-height: 640px
+  position: absolute
+  right: 0
+  width: 100%
+#car
+  @include transition(all 0.2s ease)
+  position: absolute
+  background: red
+  left: 50px
+  bottom: 0px
+  height: 80px
+  width: 80px
+  display: none
