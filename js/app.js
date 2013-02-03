@@ -17,7 +17,10 @@ require(['game'], function (game) {
   document.getElementsByTagName('body')[0].appendChild(c);
 
   // @TODO: Wrap this in "start game thingy"
-  var g = game();
-  g.start();
+  document.getElementById('start').addEventListener('click', function(e){
+    this.style.display = 'none';
+    var g = game(e.srcElement.id);
+    g.start();
+  })
 });
 
