@@ -27,7 +27,7 @@
           sky = game.add.tileSprite(0, 0, w, h, 'sky');
           bg = game.add.tileSprite(0, h-600, w, 512, 'bg');
           bg2 = game.add.tileSprite(0, h-500, w, 512, 'bg2');
-          vag = game.add.tileSprite(0, 200, w, h, 'vag');
+          vag = game.add.tileSprite(0, 200, w, 300, 'vag');
           car = game.add.sprite(w/2, h-200, 'car');
           car.body.velocity.x = 150;
       }
@@ -51,6 +51,7 @@
       }
       function speedIt(speed) {
         sky.tilePosition.x += speed*0.06;
+        vag.tilePosition.x += speed*0.51;
         bg.tilePosition.x += speed*0.5;
         bg2.tilePosition.x += speed*0.7;
       }
