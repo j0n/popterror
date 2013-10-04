@@ -1,5 +1,5 @@
-(function() {
-  window.onload = function(){
+(function($) {
+  $(document).on('newScreen', function(){
       var w = window.innerWidth;
       var h = window.innerHeight;
       var enimies = [];
@@ -12,6 +12,7 @@
 
       //var myGame = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
       var game = new Phaser.Game(w, h, Phaser.AUTO, 'stage', { preload: init, create: create, update: update });
+      window.game = game;
       function init() {
           game.load.image('sky', 'assets/himmel.png');
           game.load.image('bg', 'assets/trad_bak.png');
@@ -55,5 +56,5 @@
         bg.tilePosition.x += speed*0.5;
         bg2.tilePosition.x += speed*0.7;
       }
-  }
-})()
+  });
+})(jQuery)
