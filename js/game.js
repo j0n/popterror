@@ -10,6 +10,7 @@
       var speed = 0;
       var music;
       var car, sky, bg, bg2, vag, carPosition = 0;
+      var clouds;
 
       var game = new Phaser.Game(w, h, Phaser.CANVAS, 'stage', { preload: init, create: create, update: update });
       window.game = game;
@@ -32,7 +33,18 @@
               carPosition = carPosition > 0 ? carPosition-1 : 0;
             }
             game.add.tween(car).to({y: positions[carPosition]}, 50, Phaser.Easing.Linear.None, true);
-          }
+          };
+
+          game.load.image('cloud1', 'assets/moln_1.png');
+          game.load.image('cloud2', 'assets/moln_2.png');
+          game.load.image('cloud3', 'assets/moln_3.png');
+          game.load.image('cloud4', 'assets/moln_4.png');
+          game.load.image('cloud5', 'assets/moln_5.png');
+          game.load.image('cloud6', 'assets/moln_6.png');
+          game.load.image('cloud7', 'assets/moln_7.png');
+          game.load.image('cloud8', 'assets/moln_8.png');
+
+          clouds = new Clouds(game);
       }
       function create() {
           game.input.onDown =  function(){
@@ -50,9 +62,6 @@
 
           music = game.add.audio('song');
           music.play();
-          music.onStop = function () {
-            console.log('music stopped', arguments);
-          };
 
           car.x = 10;
           car.y = h - 210;
@@ -61,7 +70,9 @@
             h - 160,
             h - 210,
             h - 260
-          ]
+          ];
+
+          clouds.create();
       }
       function update(){
           speed = speed-0.0301;
@@ -71,6 +82,8 @@
           car.angularVelocity = 0;
           car.angularAcceleration = 0;
           speedIt(speed);
+
+          clouds.update(speed);
       }
 
       function speedIt(speed) {
