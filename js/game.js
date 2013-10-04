@@ -9,6 +9,7 @@
       var time = 0;
       var speed = 0;
       var car, sky, bg, bg2, vag;
+      var music;
 
       var game = new Phaser.Game(w, h, Phaser.CANVAS, 'stage', { preload: init, create: create, update: update });
       window.game = game;
@@ -18,7 +19,10 @@
           game.load.image('bg2', 'assets/trad_fram.png');
           game.load.image('vag', 'assets/vag_streck.png');
           game.load.image('car', 'assets/bil.png');
-          //myGame.load.load();
+          game.load.audio('song', [
+            'assets/audio/popterror_-_skogsbilvag.mp3',
+            'assets/audio/popterror_-_skogsbilvag.ogg',
+          ]);
       }
       function create() {
           //scroller = game.add.scrollZone('angelDawn', game.stage.centerX - 320, 100);
@@ -30,6 +34,13 @@
           bg2 = game.add.tileSprite(0, h-400, w, 172, 'bg2');
           car = game.add.sprite(w/2, h-200, 'car');
           car.body.velocity.x = 150;
+
+          music = game.add.audio('song');
+          music.play();
+          music.onStop = function () {
+            console.log('music stopped', arguments);
+          };
+
       }
       function update(){
           speed = speed-0.0301;
