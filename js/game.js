@@ -8,36 +8,51 @@
       //var tune = document.getElementById('song-motorAway');
       var time = 0;
       var speed = 0;
-      var myGame = new Phaser.Game(this, 'stage', w, h, init, create, update);
+      var car, sky, bg, bg2, vag;
+
+      //var myGame = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+      var game = new Phaser.Game(w, h, Phaser.AUTO, 'stage', { preload: init, create: create, update: update });
       function init() {
-          myGame.loader.addImageFile('bg', 'assets/trad_bak.png');
-          myGame.loader.addImageFile('bg2', 'assets/trad_fram.png');
-          myGame.loader.addImageFile('vag', 'assets/vag_streck.png');
-          myGame.loader.addImageFile('car', 'assets/bil.png');
-          myGame.loader.load();
+          game.load.image('sky', 'assets/himmel.png');
+          game.load.image('bg', 'assets/trad_bak.png');
+          game.load.image('bg2', 'assets/trad_fram.png');
+          game.load.image('vag', 'assets/vag_streck.png');
+          game.load.image('car', 'assets/bil.png');
+          //myGame.load.load();
       }
       function create() {
-          myGame.camera.setBounds(0, 0, myGame.stage.width, myGame.stage.height);
+          //scroller = game.add.scrollZone('angelDawn', game.stage.centerX - 320, 100);
+          game.world.setSize(w,h);
           speed = config.song.speed;
-          myGame.createScrollZone('bg').setSpeed(-speed, 0);
-          myGame.createScrollZone('bg2').setSpeed(-speed*0.3, 0);
-          myGame.createScrollZone('vag').setSpeed(-speed, 0);
-          car = myGame.createSprite(w/2, h-200, 'car');
-          car.maxVelocity.setTo(150, 150);
+          sky = game.add.tileSprite(0, 0, w, h, 'sky');
+          bg = game.add.tileSprite(0, h-600, w, 512, 'bg');
+          bg2 = game.add.tileSprite(0, h-500, w, 512, 'bg2');
+          vag = game.add.tileSprite(0, 200, w, h, 'vag');
+          car = game.add.sprite(w/2, h-200, 'car');
+          car.body.velocity.x = 150;
       }
       function update(){
+          speed = speed-0.0701;
+          //speedIt(speed);
           car.velocity.x = 0;
           car.velocity.y = 0;
           car.angularVelocity = 0;
           car.angularAcceleration = 0;
+          speedIt(speed);
+          /*
           if(myGame.input.keyboard.isDown(Phaser.Keyboard.UP)) {
-              var motion = myGame.motion.velocityFromAngle(car.angle, 300);
-              car.velocity.copyFrom(motion);
+            console.log(car.height);
+            car.y = (car.height*2);
           }
           if(myGame.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
-              var motion = myGame.motion.velocityFromAngle(car.angle, -300);
-              car.velocity.copyFrom(motion);
+            car.y = (car.height*3);
           }
+         */
+      }
+      function speedIt(speed) {
+        sky.tilePosition.x += speed*0.06;
+        bg.tilePosition.x += speed*0.5;
+        bg2.tilePosition.x += speed*0.7;
       }
   }
 })()
