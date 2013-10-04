@@ -56,4 +56,5 @@
         bg2.tilePosition.x += speed*0.7;
       }
   });
-})(jQuery)
+})(jQuery);
+
