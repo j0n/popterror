@@ -1,7 +1,7 @@
 function getConfig () {
   return {
     song : { 
-      speed : -3,
+      speed : -5,
       5: {
         action: 'obsticle',
         done: false

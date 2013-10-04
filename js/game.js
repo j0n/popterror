@@ -3,13 +3,13 @@
       var w = window.innerWidth;
       var h = window.innerHeight;
       var enimies = [];
-      var isDead = false;
+      var positions = [];
       var config = getConfig();
       //var tune = document.getElementById('song-motorAway');
       var time = 0;
       var speed = 0;
-      var car, sky, bg, bg2, vag;
       var music;
+      var car, sky, bg, bg2, vag, carPosition = 0;
 
       var game = new Phaser.Game(w, h, Phaser.CANVAS, 'stage', { preload: init, create: create, update: update });
       window.game = game;
@@ -23,8 +23,21 @@
             'assets/audio/popterror_-_skogsbilvag.mp3',
             'assets/audio/popterror_-_skogsbilvag.ogg',
           ]);
+          //myGame.load.load();
+          game.input.keyboard.onKeyDown = function(event) {
+            if (event.keyCode === 38) {
+              carPosition = carPosition < positions.length ? carPosition+1 : carPosition;
+            }
+            else if (event.keyCode === 40) {
+              carPosition = carPosition > 0 ? carPosition-1 : 0;
+            }
+            game.add.tween(car).to({y: positions[carPosition]}, 50, Phaser.Easing.Linear.None, true);
+          }
       }
       function create() {
+          game.input.onDown =  function(){
+            console.log('adfasdf');
+          };
           //scroller = game.add.scrollZone('angelDawn', game.stage.centerX - 320, 100);
           game.world.setSize(w,h);
           speed = config.song.speed;
@@ -41,6 +54,14 @@
             console.log('music stopped', arguments);
           };
 
+          car.x = 10;
+          car.y = h - 210;
+          carPosition = 1;
+          positions = [
+            h - 160,
+            h - 210,
+            h - 260
+          ]
       }
       function update(){
           speed = speed-0.0301;
@@ -50,16 +71,8 @@
           car.angularVelocity = 0;
           car.angularAcceleration = 0;
           speedIt(speed);
-          /*
-          if(myGame.input.keyboard.isDown(Phaser.Keyboard.UP)) {
-            console.log(car.height);
-            car.y = (car.height*2);
-          }
-          if(myGame.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
-            car.y = (car.height*3);
-          }
-         */
       }
+
       function speedIt(speed) {
         sky.tilePosition.x += speed*0.06;
         vag.tilePosition.x += speed*0.75;
