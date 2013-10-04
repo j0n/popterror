@@ -25,14 +25,14 @@
           game.world.setSize(w,h);
           speed = config.song.speed;
           sky = game.add.tileSprite(0, 0, w, h, 'sky');
-          bg = game.add.tileSprite(0, h-600, w, 512, 'bg');
-          bg2 = game.add.tileSprite(0, h-500, w, 512, 'bg2');
-          vag = game.add.tileSprite(0, 200, w, 300, 'vag');
+          vag = game.add.tileSprite(0, h-260, w, 300, 'vag');
+          bg = game.add.tileSprite(0, h-400, w, 112, 'bg');
+          bg2 = game.add.tileSprite(0, h-400, w, 172, 'bg2');
           car = game.add.sprite(w/2, h-200, 'car');
           car.body.velocity.x = 150;
       }
       function update(){
-          speed = speed-0.0701;
+          speed = speed-0.0301;
           //speedIt(speed);
           car.velocity.x = 0;
           car.velocity.y = 0;
@@ -51,7 +51,7 @@
       }
       function speedIt(speed) {
         sky.tilePosition.x += speed*0.06;
-        vag.tilePosition.x += speed*0.51;
+        vag.tilePosition.x += speed*0.75;
         bg.tilePosition.x += speed*0.5;
         bg2.tilePosition.x += speed*0.7;
       }
