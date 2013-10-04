@@ -10,8 +10,7 @@
       var speed = 0;
       var car, sky, bg, bg2, vag;
 
-      //var myGame = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
-      var game = new Phaser.Game(w, h, Phaser.AUTO, 'stage', { preload: init, create: create, update: update });
+      var game = new Phaser.Game(w, h, Phaser.CANVAS, 'stage', { preload: init, create: create, update: update });
       window.game = game;
       function init() {
           game.load.image('sky', 'assets/himmel.png');
