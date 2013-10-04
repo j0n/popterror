@@ -1,5 +1,5 @@
 body {
-  background: #777;
+  background: #777 url('../assets/himmel.png');
   margin: 0;
   font: 14px Helvetica, Arial, Verdana, sans-serif;
 }
@@ -24,6 +24,75 @@ div.screen { display: none; }
 
 .hidden { display: none; }
 
+.logo {
+  background: url("../assets/popterror.png") no-repeat;
+  height: 164px;
+  overflow: hidden;
+  margin: 0 auto 40px auto;
+  text-indent: 100%;
+  width: 400px;
+}
+
+.screen {
+  margin: 50px auto;
+  padding: 20px;
+  width: 500px;
+}
+
+/* Menu */
+#menu {
+  background: #aaa;
+  background: rgba(255, 255, 255, .3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .4);
+  border-radius: 3px;
+}
+
+.instructions {
+  font-size: 14px;
+  color: #eee;
+  font-style: italic;
+}
+
+.options, .social {
+  padding: 0;
+  margin: 20px auto;
+}
+
+.options { text-align: center; }
+
+.options li {
+  display: inline-block;
+}
+
+.social li {
+  display: block;
+  overflow: hidden;
+  margin: 30px 0;
+}
+
+h2 {
+  margin-top: 30px;
+  font-size: 18px;
+  border-bottom: 1px solid #000;
+  color: #333;
+}
+
+.button {
+  display: block;
+  border: 1px solid #aaa;
+  background: #222;
+  padding: 5px 10px;
+  font-size: 18px;
+  text-decoration: none;
+  box-shadow: 1px 0 1px rgba(200, 200, 200, .3);
+  border-radius: 5px;
+  margin: 0 30px;
+  color: #eee;
+}
+
+.button:hover, .button:focus {
+  background: #555;
+}
 
 #stage {
   position: absolute;
@@ -31,5 +100,21 @@ div.screen { display: none; }
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+/* Retina */
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (   min--moz-device-pixel-ratio: 2),
+only screen and (     -o-min-device-pixel-ratio: 2/1),
+only screen and (        min-device-pixel-ratio: 2),
+only screen and (                min-resolution: 192dpi),
+only screen and (                min-resolution: 2dppx) { 
+
+  .logo {
+    background: url("../assets/popterror@2x.png") no-repeat;
+    background-size: 100%;
+  }
+
 }
 
