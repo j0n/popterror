@@ -10,8 +10,8 @@
       var speed = 0;
       var myGame = new Phaser.Game(this, 'game', w, h, init, create, update);
       function init() {
-          myGame.loader.addImageFile('bg', 'car/assets/trad_bak.png');
-          myGame.loader.addImageFile('car', 'car/assets/bil.png');
+          myGame.loader.addImageFile('bg', 'assets/trad_bak.png');
+          myGame.loader.addImageFile('car', 'assets/bil.png');
           myGame.loader.load();
       }
       function create() {
