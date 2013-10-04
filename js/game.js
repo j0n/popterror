@@ -8,7 +8,7 @@
       //var tune = document.getElementById('song-motorAway');
       var time = 0;
       var speed = 0;
-      var myGame = new Phaser.Game(this, 'game', w, h, init, create, update);
+      var myGame = new Phaser.Game(this, 'stage', w, h, init, create, update);
       function init() {
           myGame.loader.addImageFile('bg', 'assets/trad_bak.png');
           myGame.loader.addImageFile('bg2', 'assets/trad_fram.png');
@@ -30,6 +30,14 @@
           car.velocity.y = 0;
           car.angularVelocity = 0;
           car.angularAcceleration = 0;
+          if(myGame.input.keyboard.isDown(Phaser.Keyboard.UP)) {
+              var motion = myGame.motion.velocityFromAngle(car.angle, 300);
+              car.velocity.copyFrom(motion);
+          }
+          if(myGame.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
+              var motion = myGame.motion.velocityFromAngle(car.angle, -300);
+              car.velocity.copyFrom(motion);
+          }
       }
   }
 })()
