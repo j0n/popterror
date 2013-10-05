@@ -27,7 +27,7 @@
           //myGame.load.load();
           game.input.keyboard.onKeyDown = function(event) {
             if (event.keyCode === 38) {
-              carPosition = carPosition < positions.length ? carPosition+1 : carPosition;
+              carPosition = carPosition < positions.length - 1 ? carPosition+1 : carPosition;
             }
             else if (event.keyCode === 40) {
               carPosition = carPosition > 0 ? carPosition-1 : 0;
