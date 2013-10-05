@@ -5,12 +5,11 @@
       var enimies = [];
       var positions = [];
       var config = getConfig();
-      //var tune = document.getElementById('song-motorAway');
       var time = 0;
       var speed = 0;
       var music;
       var car, sky, bg, bg2, vag, carPosition = 0;
-      var clouds;
+      var clouds, stars;
 
       var game = new Phaser.Game(w, h, Phaser.CANVAS, 'stage', { preload: init, create: create, update: update });
       window.game = game;
@@ -24,7 +23,7 @@
             'assets/audio/popterror_-_skogsbilvag.mp3',
             'assets/audio/popterror_-_skogsbilvag.ogg',
           ]);
-          //myGame.load.load();
+
           game.input.keyboard.onKeyDown = function(event) {
             if (event.keyCode === 38) {
               carPosition = carPosition < positions.length - 1 ? carPosition+1 : carPosition;
@@ -35,16 +34,16 @@
             game.add.tween(car).to({y: positions[carPosition]}, 50, Phaser.Easing.Linear.None, true);
           };
 
-          game.load.image('cloud1', 'assets/moln_1.png');
-          game.load.image('cloud2', 'assets/moln_2.png');
-          game.load.image('cloud3', 'assets/moln_3.png');
-          game.load.image('cloud4', 'assets/moln_4.png');
-          game.load.image('cloud5', 'assets/moln_5.png');
-          game.load.image('cloud6', 'assets/moln_6.png');
-          game.load.image('cloud7', 'assets/moln_7.png');
-          game.load.image('cloud8', 'assets/moln_8.png');
-
+          var i = 0;
+          for (i = 1; i < 9; i++) {
+            game.load.image('cloud' + i, 'assets/moln_' + i + '.png');
+          }
           clouds = new Clouds(game);
+
+          for (i = 1; i < 3; i++) {
+            game.load.image('star' + i, 'assets/stjarna_' + i + '.png');
+          }
+          stars = new Stars(game);
       }
       function create() {
           game.input.onDown =  function(){
@@ -61,7 +60,7 @@
           car.body.velocity.x = 150;
 
           music = game.add.audio('song');
-          music.play();
+          //music.play();
 
           car.x = 10;
           car.y = h - 210;
@@ -73,6 +72,7 @@
           ];
 
           clouds.create();
+          stars.create();
       }
       function update(){
           speed = speed-0.0301;
@@ -87,7 +87,7 @@
       }
 
       function speedIt(speed) {
-        sky.tilePosition.x += speed*0.06;
+        sky.tilePosition.x += speed*0.01;
         vag.tilePosition.x += speed*0.75;
         bg.tilePosition.x += speed*0.5;
         bg2.tilePosition.x += speed*0.7;

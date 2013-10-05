@@ -25,7 +25,7 @@ Clouds.prototype = {
   },
 
   generateClouds: function (count) {
-    var heightBounds = this.game.height * 0.7;
+    var heightBounds = this.game.height - 300;
     for (var i = 0; i < count; i++) {
       var spriteName = 'cloud' + (~~(Math.random() * 8) + 1);
       var y = Math.min(~~(Math.random() * heightBounds));
@@ -33,7 +33,7 @@ Clouds.prototype = {
       var sprite = new Phaser.Sprite(this.game, x, y, spriteName);
       sprite.velocity.x = Math.min(Math.random(), 0.4) / 5 + 0.1;
       this.cloudSprites.push(sprite);
-      this.game.world.group.addAt(sprite, 1);
+      this.game.world.group.addAt(sprite, 2);
     }
   }
 };
