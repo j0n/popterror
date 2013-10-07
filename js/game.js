@@ -10,6 +10,7 @@
       var music;
       var car, sky, bg, bg2, vag, carPosition = 0;
       var clouds, stars;
+      var tmp;
 
       var game = new Phaser.Game(w, h, Phaser.CANVAS, 'stage', { preload: init, create: create, update: update });
       window.game = game;
@@ -43,13 +44,10 @@
           for (i = 1; i < 3; i++) {
             game.load.image('star' + i, 'assets/stjarna_' + i + '.png');
           }
+          game.load.image('trad', 'assets/hinder_trad1.png');
           stars = new Stars(game);
       }
       function create() {
-          game.input.onDown =  function(){
-            console.log('adfasdf');
-          };
-          //scroller = game.add.scrollZone('angelDawn', game.stage.centerX - 320, 100);
           game.world.setSize(w,h);
           speed = config.song.speed;
           sky = game.add.tileSprite(0, 0, w, h, 'sky');
@@ -70,6 +68,8 @@
             h - 210,
             h - 260
           ];
+          tmp = game.add.sprite(w/2, h-200, 'trad');
+          tmp.gravity = 0;
 
           clouds.create();
           stars.create();
@@ -82,8 +82,10 @@
           car.angularVelocity = 0;
           car.angularAcceleration = 0;
           speedIt(speed);
-
           clouds.update(speed);
+          game.physics.collide(car, tmp, collision, null, this);
+
+
       }
 
       function speedIt(speed) {
@@ -91,6 +93,21 @@
         vag.tilePosition.x += speed*0.75;
         bg.tilePosition.x += speed*0.5;
         bg2.tilePosition.x += speed*0.7;
+
+        tmp.x += speed*0.75;
+
+      }
+      function collision(car, obstacle) {
+        speed = speed * 0.1;
+        obstacle.kill();
+        obstacle.gravity = 0;
+
+        var emitter = game.add.emitter(obstacle.x-obstacle.width, obstacle.y);
+        emitter.maxParticleSpeed.setTo(speed*3, 10);
+        emitter.minParticleSpeed.setTo(speed, 50);
+        emitter.makeParticles('trad', [0]);
+        emitter.start(true, 4000, 15);
+        console.log('collissiioni');
       }
   });
 })(jQuery);
