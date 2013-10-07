@@ -9,4 +9,5 @@
 - [ ] Lägg till poäng-räkning x * hastighet = poäng/frame
 - [ ] Hantera slut på låt, visa game-over-skärm
 - [ ] Spara highscore (tabell finns)
+- [ ] Lägg till retina
 
