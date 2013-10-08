@@ -55,6 +55,7 @@
           bg = game.add.tileSprite(0, h-400, w, 112, 'bg');
           bg2 = game.add.tileSprite(0, h-400, w, 172, 'bg2');
           car = game.add.sprite(w/2, h-200, 'car');
+          car.body.setSize(70, 20, 0, 0);
           car.body.velocity.x = 150;
 
           music = game.add.audio('song');
@@ -68,22 +69,30 @@
             h - 210,
             h - 260
           ];
-          tmp = game.add.sprite(w/2, h-200, 'trad');
-          tmp.gravity = 0;
 
           clouds.create();
           stars.create();
       }
       function update(){
-          speed = speed-0.0301;
-          //speedIt(speed);
-          car.velocity.x = 0;
-          car.velocity.y = 0;
-          car.angularVelocity = 0;
-          car.angularAcceleration = 0;
-          speedIt(speed);
-          clouds.update(speed);
-          game.physics.collide(car, tmp, collision, null, this);
+        // move this to right place
+        if (Math.random()*100 <  1){
+          enimies.push(new Obstacle(game, w, h));
+        }
+        speed = speed-0.0301;
+        //speedIt(speed);
+        car.velocity.x = 0;
+        car.velocity.y = 0;
+        car.angularVelocity = 0;
+        car.angularAcceleration = 0;
+        speedIt(speed);
+        clouds.update(speed);
+        for (var i = 0, ii = enimies.length; i<ii;i++) {
+          enimies[i].update(speed);
+          var k = game.physics.collide(car, enimies[i].sprite, collision, null, this);
+          if (k) {
+            //toRemove.push(i);
+          }
+        }
 
 
       }
@@ -93,21 +102,17 @@
         vag.tilePosition.x += speed*0.75;
         bg.tilePosition.x += speed*0.5;
         bg2.tilePosition.x += speed*0.7;
-
-        tmp.x += speed*0.75;
-
       }
       function collision(car, obstacle) {
-        speed = speed * 0.1;
+        speed = speed * 0.8;
         obstacle.kill();
         obstacle.gravity = 0;
 
-        var emitter = game.add.emitter(obstacle.x-obstacle.width, obstacle.y);
+        var emitter = game.add.emitter(car.x-car.width, obstacle.y);
         emitter.maxParticleSpeed.setTo(speed*3, 10);
         emitter.minParticleSpeed.setTo(speed, 50);
-        emitter.makeParticles('trad', [0]);
+        emitter.makeParticles(obstacle.key, [0]);
         emitter.start(true, 4000, 15);
-        console.log('collissiioni');
       }
   });
 })(jQuery);
