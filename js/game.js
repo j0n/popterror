@@ -45,6 +45,8 @@
             game.load.image('star' + i, 'assets/stjarna_' + i + '.png');
           }
           game.load.image('trad', 'assets/hinder_trad1.png');
+          game.load.image('snogubbe', 'assets/hinder_snogubbe.png');
+          game.load.image('trad2', 'assets/hinder_trad2.png');
           stars = new Stars(game);
       }
       function create() {
@@ -55,7 +57,7 @@
           bg = game.add.tileSprite(0, h-400, w, 112, 'bg');
           bg2 = game.add.tileSprite(0, h-400, w, 172, 'bg2');
           car = game.add.sprite(w/2, h-200, 'car');
-          car.body.setSize(70, 20, 0, 0);
+          car.body.setSize(100, 20, 70, 0);
           car.body.velocity.x = 150;
 
           music = game.add.audio('song');
@@ -75,8 +77,8 @@
       }
       function update(){
         // move this to right place
-        if (Math.random()*100 <  1){
-          enimies.push(new Obstacle(game, w, h));
+        if (Math.random()*100 <  3){
+          enimies.push(new Obstacle(game, w, h, positions));
         }
         speed = speed-0.0301;
         //speedIt(speed);
@@ -86,15 +88,25 @@
         car.angularAcceleration = 0;
         speedIt(speed);
         clouds.update(speed);
+        var toRemove = [], toKill = [];
         for (var i = 0, ii = enimies.length; i<ii;i++) {
           enimies[i].update(speed);
           var k = game.physics.collide(car, enimies[i].sprite, collision, null, this);
           if (k) {
-            //toRemove.push(i);
+            toRemove.push(i);
+          }
+          else if (enimies[i].sprite.x < -enimies[i].sprite.width) {
+            toKill.push(i);
           }
         }
-
-
+        // remove obstacles collided with
+        for (var i = 0, ii= toRemove.length; i<ii;i++) {
+          enimies.splice(toRemove[i], 1);
+        }
+        for (var i = 0, ii= toKill.length; i<ii;i++) {
+          enimies[toKill[i]].sprite.kill();
+          enimies.splice(toKill[i], 1);
+        }
       }
 
       function speedIt(speed) {
@@ -104,15 +116,20 @@
         bg2.tilePosition.x += speed*0.7;
       }
       function collision(car, obstacle) {
-        speed = speed * 0.8;
-        obstacle.kill();
-        obstacle.gravity = 0;
+        speed = speed * 0.6;
+        obstacle.allowRotation = true;
+        obstacle.velocity.x = -90*speed;
+        obstacle.velocity.y = 15*speed;
+        obstacle.angularVelocity = 15*speed;
+        obstacle.angularAcceleration = 100;
 
+        /*
         var emitter = game.add.emitter(car.x-car.width, obstacle.y);
         emitter.maxParticleSpeed.setTo(speed*3, 10);
         emitter.minParticleSpeed.setTo(speed, 50);
         emitter.makeParticles(obstacle.key, [0]);
         emitter.start(true, 4000, 15);
+        */
       }
   });
 })(jQuery);
