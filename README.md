@@ -4,9 +4,9 @@
 - [ ] Lägg till månen
 - [ ] Fixa berg
 - [ ] Generera hinder
-- [*] Fixa kollisionshantering - started
-- [*] Hantera kollision, minska fart med x procent
-- [ ] Lägg till poäng-räkning x * hastighet = poäng/frame
+- [x] Fixa kollisionshantering - started
+- [x] Hantera kollision, minska fart med x procent
+- [x] Lägg till poäng-räkning x * hastighet = poäng/frame
 - [ ] Hantera slut på låt, visa game-over-skärm
 - [ ] Spara highscore (tabell finns)
 - [ ] Lägg till retina

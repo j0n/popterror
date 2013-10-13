@@ -10,6 +10,7 @@
       var music;
       var car, sky, bg, bg2, vag, carPosition = 0;
       var clouds, stars;
+      var score = 0;
       var tmp;
 
       var game = new Phaser.Game(w, h, Phaser.CANVAS, 'stage', { preload: init, create: create, update: update });
@@ -107,6 +108,11 @@
           enimies[toKill[i]].sprite.kill();
           enimies.splice(toKill[i], 1);
         }
+
+
+        // Increase score
+        score += Math.round((1 * -speed) / 5);
+        $('.score').text(score);
       }
 
       function speedIt(speed) {
