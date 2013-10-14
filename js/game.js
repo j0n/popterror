@@ -12,6 +12,7 @@
       var clouds, stars;
       var score = 0;
       var tmp;
+      var lastEnemy = 200;
 
       var game = new Phaser.Game(w, h, Phaser.CANVAS, 'stage', { preload: init, create: create, update: update });
       window.game = game;
@@ -77,10 +78,6 @@
           stars.create();
       }
       function update(){
-        // move this to right place
-        if (Math.random()*100 <  3){
-          enimies.push(new Obstacle(game, w, h, positions));
-        }
         speed = speed-0.0301;
         //speedIt(speed);
         car.velocity.x = 0;
@@ -109,10 +106,22 @@
           enimies.splice(toKill[i], 1);
         }
 
-
         // Increase score
         score += Math.round((1 * -speed) / 5);
         $('.score').text(score);
+
+        // Generate enemies
+        lastEnemy += speed*0.75;
+        if (lastEnemy < 0) {
+          lastEnemy = ~~(Math.random() * 400) + 400;
+          var pos = Math.floor(Math.random() * 3);
+          enimies.push(new Obstacle(game, w, h, positions, pos));
+          if (Math.random() > 0.7) {
+            var posSecond = pos;
+            while (posSecond === pos) posSecond = Math.floor(Math.random() * 3);
+            enimies.push(new Obstacle(game, w, h, positions, posSecond));
+          }
+        }
       }
 
       function speedIt(speed) {
