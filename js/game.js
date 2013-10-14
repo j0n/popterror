@@ -22,6 +22,7 @@
           game.load.image('bg2', 'assets/trad_fram.png');
           game.load.image('vag', 'assets/vag_streck.png');
           game.load.image('car', 'assets/bil.png');
+          game.load.image('moon', 'assets/moon.png');
           game.load.audio('song', [
             'assets/audio/popterror_-_skogsbilvag.mp3',
             'assets/audio/popterror_-_skogsbilvag.ogg',
@@ -61,6 +62,8 @@
           car = game.add.sprite(w/2, h-200, 'car');
           car.body.setSize(100, 20, 70, 0);
           car.body.velocity.x = 150;
+
+          game.add.sprite(w - (50 + 41), 50, 'moon');
 
           music = game.add.audio('song');
           //music.play();
