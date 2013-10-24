@@ -64,7 +64,7 @@
           ground = game.add.tileSprite(0, h - 198 - 30, w, 63, 'ground');
           bg = game.add.tileSprite(0, h-196-63-80, w, 112, 'bg');
           bg2 = game.add.tileSprite(0, h-196-63-80, w, 172, 'bg2');
-          car = game.add.sprite(w/2, h-200, 'car');
+          car = game.add.sprite(w/2, h-150, 'car');
           car.body.setSize(100, 20, 70, 0);
           car.body.velocity.x = 150;
 
