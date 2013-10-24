@@ -33,7 +33,7 @@ Clouds.prototype = {
       var sprite = new Phaser.Sprite(this.game, x, y, spriteName);
       sprite.velocity.x = Math.min(Math.random(), 0.4) / 5 + 0.1;
       this.cloudSprites.push(sprite);
-      this.game.world.group.addAt(sprite, 2);
+      this.game.world.group.addAt(sprite, 1);
     }
   }
 };

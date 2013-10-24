@@ -8,8 +8,8 @@
       var time = 0;
       var speed = 0;
       var music;
-      var car, sky, bg, bg2, vag, carPosition = 0;
-      var clouds, stars;
+      var car, sky, bg, bg2, vag, carPosition = 0, ground;
+      var clouds, stars, mountains;
       var score = 0;
       var tmp;
       var lastEnemy = 200;
@@ -21,6 +21,7 @@
           game.load.image('bg', 'assets/trad_bak.png');
           game.load.image('bg2', 'assets/trad_fram.png');
           game.load.image('vag', 'assets/vag_streck.png');
+          game.load.image('ground', 'assets/mark.png');
           game.load.image('car', 'assets/bil.png');
           game.load.image('moon', 'assets/moon.png');
           game.load.audio('song', [
@@ -38,12 +39,6 @@
             game.add.tween(car).to({y: positions[carPosition]}, 50, Phaser.Easing.Linear.None, true);
           };
 
-          var i = 0;
-          for (i = 1; i < 9; i++) {
-            game.load.image('cloud' + i, 'assets/moln_' + i + '.png');
-          }
-          clouds = new Clouds(game);
-
           for (i = 1; i < 3; i++) {
             game.load.image('star' + i, 'assets/stjarna_' + i + '.png');
           }
@@ -51,14 +46,24 @@
           game.load.image('snogubbe', 'assets/hinder_snogubbe.png');
           game.load.image('trad2', 'assets/hinder_trad2.png');
           stars = new Stars(game);
+
+          var i = 0;
+          for (i = 1; i < 9; i++) {
+            game.load.image('cloud' + i, 'assets/moln_' + i + '.png');
+          }
+          clouds = new Clouds(game);
+
+          mountains = new Mountains(game);
+          mountains.create();
       }
       function create() {
           game.world.setSize(w,h);
           speed = config.song.speed;
           sky = game.add.tileSprite(0, 0, w, h, 'sky');
-          vag = game.add.tileSprite(0, h-260, w, 300, 'vag');
-          bg = game.add.tileSprite(0, h-400, w, 112, 'bg');
-          bg2 = game.add.tileSprite(0, h-400, w, 172, 'bg2');
+          vag = game.add.tileSprite(0, h-198, w, 198, 'vag');
+          ground = game.add.tileSprite(0, h - 198 - 30, w, 63, 'ground');
+          bg = game.add.tileSprite(0, h-196-63-80, w, 112, 'bg');
+          bg2 = game.add.tileSprite(0, h-196-63-80, w, 172, 'bg2');
           car = game.add.sprite(w/2, h-200, 'car');
           car.body.setSize(100, 20, 70, 0);
           car.body.velocity.x = 150;
@@ -72,9 +77,9 @@
           car.y = h - 210;
           carPosition = 1;
           positions = [
-            h - 160,
-            h - 210,
-            h - 260
+            h - 100,
+            h - 150,
+            h - 200
           ];
 
           clouds.create();
@@ -132,6 +137,7 @@
         vag.tilePosition.x += speed*0.75;
         bg.tilePosition.x += speed*0.5;
         bg2.tilePosition.x += speed*0.7;
+        ground.tilePosition.x += speed * 0.7;
       }
       function collision(car, obstacle) {
         speed = speed * 0.6;
