@@ -34,6 +34,9 @@ Clouds.prototype = {
       sprite.velocity.x = Math.min(Math.random(), 0.4) / 5 + 0.1;
       this.cloudSprites.push(sprite);
       this.game.world.group.addAt(sprite, 1);
+      if (Math.random() > 0.5) {
+        sprite.bringToTop();
+      }
     }
   }
 };

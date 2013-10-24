@@ -25,6 +25,8 @@
       var game = new Phaser.Game(w, h, Phaser.CANVAS, 'stage', { preload: init, create: create, update: update });
       window.game = game;
       function init() {
+
+          mountains = new Mountains(game);
           game.load.image('sky', 'assets/himmel.png');
           game.load.image('bg', 'assets/trad_bak.png');
           game.load.image('bg2', 'assets/trad_fram.png');
@@ -61,18 +63,19 @@
           }
           clouds = new Clouds(game);
 
-          mountains = new Mountains(game);
-          mountains.create();
       }
       function create() {
           game.world.setSize(w,h);
           speed = config.song.speed;
           sky = game.add.tileSprite(0, 0, w, h, 'sky');
+          mountains.create();
+          clouds.create();
           vag = game.add.tileSprite(0, h-198, w, 198, 'vag');
           ground = game.add.tileSprite(0, h - 198 - 30, w, 63, 'ground');
           bg = game.add.tileSprite(0, h-196-63-80, w, 112, 'bg');
           bg2 = game.add.tileSprite(0, h-196-63-80, w, 172, 'bg2');
           car = game.add.sprite(w/2, h-150, 'car');
+
           car.body.setSize(100, 20, 70, 0);
           car.body.velocity.x = 150;
           scoreHolder = $('.score');
@@ -95,7 +98,6 @@
           car.angularVelocity = 0;
           car.angularAcceleration = 0;
 
-          clouds.create();
           stars.create();
       }
       function update(){
@@ -103,6 +105,7 @@
         car.x = 10;
         speedIt(speed);
         clouds.update(speed);
+        mountains.update(speed);
         var toRemove = [], toKill = [];
         //console.log(enimies.length);
         for (var i = 0, ii = enimies.length; i<ii; i++) {
