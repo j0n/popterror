@@ -7,11 +7,19 @@
       var config = getConfig();
       var time = 0;
       var speed = 0;
-      var music;
-      var car, sky, bg, bg2, vag, carPosition = 0, ground;
-      var clouds, stars, mountains;
+      var music,
+          scoreHolder,
+          car,
+          sky,
+          bg,
+          bg2,
+          vag,
+          carPosition = 0,
+          ground,
+          clouds,
+          stars,
+          mountains;
       var score = 0;
-      var tmp;
       var lastEnemy = 200;
 
       var game = new Phaser.Game(w, h, Phaser.CANVAS, 'stage', { preload: init, create: create, update: update });
@@ -67,6 +75,7 @@
           car = game.add.sprite(w/2, h-150, 'car');
           car.body.setSize(100, 20, 70, 0);
           car.body.velocity.x = 150;
+          scoreHolder = $('.score');
 
           game.add.sprite(w - (50 + 41), 50, 'moon');
 
@@ -81,6 +90,10 @@
             h - 150,
             h - 200
           ];
+          car.velocity.x = 0;
+          car.velocity.y = 0;
+          car.angularVelocity = 0;
+          car.angularAcceleration = 0;
 
           clouds.create();
           stars.create();
@@ -88,37 +101,34 @@
       function update(){
         speed = speed-0.0301;
         //speedIt(speed);
-        car.velocity.x = 0;
-        car.velocity.y = 0;
-        car.angularVelocity = 0;
-        car.angularAcceleration = 0;
         speedIt(speed);
         clouds.update(speed);
         var toRemove = [], toKill = [];
-        for (var i = 0, ii = enimies.length; i<ii;i++) {
-          enimies[i].update(speed);
-          var k = game.physics.collide(car, enimies[i].sprite, collision, null, this);
-          if (k) {
-            toRemove.push(i);
+        //console.log(enimies.length);
+        for (var i = 0, ii = enimies.length; i<ii; i++) {
+          if (enimies[i]) {
+            enimies[i].update(speed);
+            var k = game.physics.collide(car, enimies[i].sprite, collision, null, this);
+            if (k) {
+              enimies.splice(i, 1);
+              i--;
+              //toRemove.push(i);
+            }
+            else if (enimies[i].sprite.x < -enimies[i].sprite.width) {
+              enimies[i].sprite.kill();
+              enimies.splice(i, 1);
+              i--;
+              //toKill.push(i);
+            }
           }
-          else if (enimies[i].sprite.x < -enimies[i].sprite.width) {
-            toKill.push(i);
-          }
-        }
-        // remove obstacles collided with
-        for (var i = 0, ii= toRemove.length; i<ii;i++) {
-          enimies.splice(toRemove[i], 1);
-        }
-        for (var i = 0, ii= toKill.length; i<ii;i++) {
-          enimies[toKill[i]].sprite.kill();
-          enimies.splice(toKill[i], 1);
         }
 
         // Increase score
         score += Math.round((1 * -speed) / 5);
-        $('.score').text(score);
+        scoreHolder.text(score);
 
         // Generate enemies
+        //
         lastEnemy += speed*0.75;
         if (lastEnemy < 0) {
           lastEnemy = ~~(Math.random() * 400) + 400;
