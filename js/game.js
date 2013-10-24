@@ -61,6 +61,12 @@
           game.load.image('trad', 'assets/hinder_trad1.png');
           game.load.image('snogubbe', 'assets/hinder_snogubbe.png');
           game.load.image('trad2', 'assets/hinder_trad2.png');
+          game.load.image('alg', 'assets/hinder_alg.png');
+          game.load.image('alien', 'assets/hinder_alien.png');
+          game.load.image('barnvagn', 'assets/hinder_barnvagn.png');
+          game.load.image('bil', 'assets/hinder_bil.png');
+          game.load.image('rav', 'assets/hinder_rav.png');
+          game.load.image('sten', 'assets/hinder_sten.png');
           stars = new Stars(game);
 
           var i = 0;
