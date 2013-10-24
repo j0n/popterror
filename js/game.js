@@ -1,7 +1,7 @@
 (function($) {
   $(document).on('newScreen', function(){
-      var w = window.innerWidth;
-      var h = window.innerHeight;
+      var w = $('#stage').width();
+      var h = $('#stage').height();
       var enimies = [];
       var positions = [];
       var config = getConfig();
