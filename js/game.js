@@ -82,7 +82,7 @@
           music = game.add.audio('song');
           //music.play();
 
-          car.x = 10;
+          car.x = 30;
           car.y = h - 150;
           carPosition = 1;
           positions = [
