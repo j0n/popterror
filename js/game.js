@@ -100,7 +100,7 @@
       }
       function update(){
         speed = speed-0.0301;
-        //speedIt(speed);
+        car.x = 10;
         speedIt(speed);
         clouds.update(speed);
         var toRemove = [], toKill = [];
