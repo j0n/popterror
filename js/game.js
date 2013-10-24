@@ -83,7 +83,7 @@
           //music.play();
 
           car.x = 10;
-          car.y = h - 210;
+          car.y = h - 150;
           carPosition = 1;
           positions = [
             h - 100,
