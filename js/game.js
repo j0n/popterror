@@ -1,5 +1,8 @@
 (function($) {
-  $(document).on('newScreen', function(){
+  $(document).on('newScreen', function(event, screen){
+      if (screen !== 'stage') return;
+      $('canvas').remove();
+
       var w = $('#stage').width();
       var h = $('#stage').height();
       var enimies = [];
@@ -21,12 +24,15 @@
           mountains;
       var score = 0;
       var lastEnemy = 200;
-
       var game = new Phaser.Game(w, h, Phaser.CANVAS, 'stage', { preload: init, create: create, update: update });
+      var gameTime = 3 * 1000; // Length of one game
+      var gameover = false;
+
       window.game = game;
       function init() {
-
+          gameover = false;
           mountains = new Mountains(game);
+          game.load.image('logo', 'assets/popterror.png');
           game.load.image('sky', 'assets/himmel.png');
           game.load.image('bg', 'assets/trad_bak.png');
           game.load.image('bg2', 'assets/trad_fram.png');
@@ -99,13 +105,22 @@
           car.angularAcceleration = 0;
 
           stars.create();
+
+          setTimeout(gameOver, gameTime);
       }
       function update(){
+        clouds.update(speed);
+        if (gameover) {
+          car.x += speed * -1;
+          return;
+        }
+
         speed = speed-0.0301;
         car.x = 10;
         speedIt(speed);
         clouds.update(speed);
         mountains.update(speed);
+
         var toRemove = [], toKill = [];
         //console.log(enimies.length);
         for (var i = 0, ii = enimies.length; i<ii; i++) {
@@ -167,6 +182,11 @@
         emitter.makeParticles(obstacle.key, [0]);
         emitter.start(true, 4000, 15);
         */
+      }
+
+      function gameOver() {
+        gameover = true;
+        $('#stage').addClass('gameover');
       }
   });
 })(jQuery);
