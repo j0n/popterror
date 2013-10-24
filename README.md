@@ -1,8 +1,8 @@
 # Att göra
 
-- [ ] Fixa z-index på moln/stjärnor/vägar etc
-- [ ] Lägg till månen
-- [ ] Fixa berg
+- [x] Fixa z-index på moln/stjärnor/vägar etc
+- [x] Lägg till månen
+- [x] Fixa berg
 - [x] Generera hinder
 - [x] Fixa kollisionshantering - started
 - [x] Hantera kollision, minska fart med x procent

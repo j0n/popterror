@@ -36,7 +36,7 @@
           game.load.image('sky', 'assets/himmel.png');
           game.load.image('bg', 'assets/trad_bak.png');
           game.load.image('bg2', 'assets/trad_fram.png');
-          game.load.image('vag', 'assets/vag_streck.png');
+          game.load.image('vag', 'assets/vag_brun.png');
           game.load.image('ground', 'assets/mark.png');
           game.load.image('car', 'assets/bil.png');
           game.load.image('moon', 'assets/moon.png');
@@ -74,6 +74,7 @@
           game.world.setSize(w,h);
           speed = config.song.speed;
           sky = game.add.tileSprite(0, 0, w, h, 'sky');
+          game.add.sprite(w - (50 + 41), 50, 'moon');
           mountains.create();
           clouds.create();
           vag = game.add.tileSprite(0, h-198, w, 198, 'vag');
@@ -86,7 +87,6 @@
           car.body.velocity.x = 150;
           scoreHolder = $('.score');
 
-          game.add.sprite(w - (50 + 41), 50, 'moon');
 
           music = game.add.audio('song');
           //music.play();
