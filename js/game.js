@@ -1,15 +1,28 @@
 (function($) {
+
+  var config = getConfig();
+  var time = 0, score = 0, speed = 0, gameover = false, gameTime = 3 * 1000;
+
+  var reset = function() {
+    score = 0;
+    speed = config.song.speed;
+    gameover = false;
+  }
+  function gameOver() {
+    gameover = true;
+    $('#stage').addClass('gameover');
+  }
+
+  $(document).on('restart', function() {
+    reset();
+    setTimeout(gameOver, gameTime);
+  });
   $(document).on('newScreen', function(event, screen){
       if (screen !== 'stage') return;
-      $('canvas').remove();
-
       var w = $('#stage').width();
       var h = $('#stage').height();
       var enimies = [];
       var positions = [];
-      var config = getConfig();
-      var time = 0;
-      var speed = 0;
       var music,
           scoreHolder,
           car,
@@ -22,11 +35,8 @@
           clouds,
           stars,
           mountains;
-      var score = 0;
       var lastEnemy = 200;
       var game = new Phaser.Game(w, h, Phaser.CANVAS, 'stage', { preload: init, create: create, update: update });
-      var gameTime = 3 * 1000; // Length of one game
-      var gameover = false;
 
       window.game = game;
       function init() {
@@ -92,7 +102,6 @@
           car.body.setSize(100, 20, 70, 0);
           car.body.velocity.x = 150;
           scoreHolder = $('.score');
-
 
           music = game.add.audio('song');
           //music.play();
