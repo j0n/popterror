@@ -2,6 +2,7 @@ body {
   background: #777 url('../assets/himmel.png');
   margin: 0;
   font: 14px Helvetica, Arial, Verdana, sans-serif;
+  line-height: 1.4;
 }
 
 * { box-sizing: border-box; }
@@ -143,7 +144,7 @@ only screen and (                min-resolution: 2dppx) {
   top: 20%;
   font-size: 78px;
   width: 200px;
-  margin-left: -100px;
+  margin-left: -120px;
   -webkit-text-shadow: 0 0 5px rgba(0, 0, 0, .3);
   -moz-text-shadow: 0 0 5px rgba(0, 0, 0, .3);
   -o-text-shadow: 0 0 5px rgba(0, 0, 0, .3);
@@ -173,6 +174,18 @@ only screen and (                min-resolution: 2dppx) {
   -o-transform: translate(0, 100px);
   -ms-transform: translate(0, 100px);
   transform: translate(0, 100px);
+  border-radius: 10px;
+  padding: 10px 20px 20px;
+  text-align: center;
+}
+.end h2 {
+  color: #FFF;
+  text-align: center;
+  margin-top: 10px;
+}
+.end a {
+  color: #FFF;
+  text-decoration: none;
 }
 
 #stage.gameover .end {
