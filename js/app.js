@@ -1,14 +1,21 @@
 (function ($) {
   $(function () {
     $(document).on('click', '.button', function (event) {
-      console.log('new fuck');
       event.preventDefault();
       toggleScreen($(this).attr('href').substr(1));
     });
-    $('.end').on('click', 'a', function() {
+    $('.end').on('click', '#restart', function() {
       toggleScreen('stage', true);
       $(document).trigger('restart');
     })
+    $('#fb-sharelink').on('click', function(e) {
+      e.preventDefault();
+      window.open(
+        $(this).attr('href'),
+        'facebook-share-dialog', 
+        'width=626,height=436'
+      );
+    });
   });
 
   function toggleScreen(name, preventNewScreen) {

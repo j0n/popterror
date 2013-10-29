@@ -1,66 +1,8 @@
 function getConfig () {
   return {
-    song : { 
-      speed : -5,
-      5: {
-        action: 'obsticle',
-        done: false
-      },
-      12: {
-        action: 'obsticle',
-        done: false
-      },
-      51: {
-        action : 'speed',
-        speed: -4
-      },
-
-      56 : {
-        action : 'speed',
-        speed: -3
-      },
-      94 : {
-        action : 'speed',
-        speed: -4
-      },
-      97 : {
-        action : 'speed',
-        speed: -4
-      },
-      100 : {
-        action : 'speed',
-        speed: -5
-      },
-      125 : {
-        action : 'speed',
-        speed: -2
-      },
-      126 : {
-        action : 'end',
-      }
+    song: {
+      speed: -5
     },
-  
-  car: {
-    3 : {
-      action : 'spin',
-      remove: 7, 
-      done: false
-    },
-    10 : {
-      action : 'spin',
-      remove: 13, 
-      done: false
-    },
-    16 : {
-      action : 'leftSlide',
-      remove: 18, 
-      done: false
-    },
-    20 : {
-      action : 'rightSlide',
-      remove: 22, 
-      done: false
-    }
+    url: 'http://popterror.se'
   }
-}
 };

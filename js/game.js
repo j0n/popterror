@@ -2,7 +2,6 @@
 
   var config = getConfig();
   var time = 0, score = 0, speed = 0, gameover = false, gameTime = 3 * 1000;
-
   var reset = function() {
     score = 0;
     speed = config.song.speed;
@@ -11,12 +10,15 @@
   function gameOver() {
     gameover = true;
     $('#stage').addClass('gameover');
+    var poangUrl = encodeURIComponent(config.url + '?score=' + score);
+    $('#fb-sharelink').attr('href', 'https://www.facebook.com/sharer/sharer.php?u='+ poangUrl);
   }
 
   $(document).on('restart', function() {
     reset();
     setTimeout(gameOver, gameTime);
   });
+
   $(document).on('newScreen', function(event, screen){
       if (screen !== 'stage') return;
       var w = $('#stage').width();
@@ -38,7 +40,6 @@
       var lastEnemy = 200;
       var game = new Phaser.Game(w, h, Phaser.CANVAS, 'stage', { preload: init, create: create, update: update });
 
-      window.game = game;
       function init() {
           gameover = false;
           mountains = new Mountains(game);
@@ -189,19 +190,6 @@
         obstacle.velocity.y = 15*speed;
         obstacle.angularVelocity = 15*speed;
         obstacle.angularAcceleration = 100;
-
-        /*
-        var emitter = game.add.emitter(car.x-car.width, obstacle.y);
-        emitter.maxParticleSpeed.setTo(speed*3, 10);
-        emitter.minParticleSpeed.setTo(speed, 50);
-        emitter.makeParticles(obstacle.key, [0]);
-        emitter.start(true, 4000, 15);
-        */
-      }
-
-      function gameOver() {
-        gameover = true;
-        $('#stage').addClass('gameover');
       }
   });
 })(jQuery);

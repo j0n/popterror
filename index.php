@@ -5,6 +5,14 @@
     <meta name="viewport" content="initial-scale=1 maximum-scale=1 user-scalable=0" />
     <link href="css/style.css" rel="stylesheet" />
     <script src="js/modernizr.js"></script>
+    <?php if(isset($_GET['score'])): ?>
+      <meta property="og:title" content="<?php echo $_GET['score'] ?>!!??! Otroliga poäng | Popterror | Skogsbilväg">
+      <meta property="og:description" content="Jag fick <?php echo $_GET['score'] ?> poäng med hjäla av en bil och popterror. Hur många poäng kan du få med hjälp av det?" />
+    <?php else: ?>
+      <meta property="og:title" content="Popterror | Skogsbilväg">
+      <meta property="og:description" content="Du, en bil och popterror. Hur många poäng kan du få med hjälp av det?" />
+    <?php endif; ?>
+    <meta property="og:image" content="http://popterror.se/wp-content/uploads/2013/10/Omslag-skogsbilv%C3%A4g.jpg">
   </head>
   <body>
 
@@ -63,7 +71,10 @@
           Bra styrt kompis! <br />Spela igen för att se om du kan få en ännu bättre
           poäng!
         </p>
-        <a href="#stage">&rsaquo;&rsaquo; Spela igen! &lsaquo;&lsaquo;</a>
+        <p>
+          <a href="" id="fb-sharelink">Dela med dig av ditt resultat med dina facebookkompisar</a>
+        </p>
+        <a id="restart" href="#stage">&rsaquo;&rsaquo; Spela igen! &lsaquo;&lsaquo;</a>
       </div>
     </div>
 
