@@ -51,10 +51,6 @@
           game.load.image('ground', 'assets/mark.png');
           game.load.image('car', 'assets/bil.png');
           game.load.image('moon', 'assets/moon.png');
-          game.load.audio('song', [
-            'assets/audio/popterror_-_skogsbilvag.mp3',
-            'assets/audio/popterror_-_skogsbilvag.ogg',
-          ]);
 
           game.input.keyboard.onKeyDown = function(event) {
             if (event.keyCode === 38) {
@@ -104,9 +100,6 @@
           car.body.velocity.x = 150;
           scoreHolder = $('.score');
 
-          music = game.add.audio('song');
-          //music.play();
-
           car.x = 30;
           car.y = h - 150;
           carPosition = 1;
@@ -123,6 +116,8 @@
           stars.create();
 
           setTimeout(gameOver, gameTime);
+
+          document.getElementById('music').play();
       }
       function update(){
         clouds.update(speed);

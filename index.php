@@ -95,6 +95,11 @@
     <script src="js/stars.js" type="text/javascript"></script>
     <script src="js/mountains.js" type="text/javascript"></script>
     <script src="js/app.js" type="text/javascript"></script>
+
+    <audio preload="auto" autobuffer id="music" loop>
+      <source src="assets/audio/popterror_-_skogsbilvag.mp3" />
+      <source src="assets/audio/popterror_-_skogsbilvag.ogg" />
+    </audio>
   </body>
 </html>
 
