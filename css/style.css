@@ -156,7 +156,6 @@ div.screen { display: none; }
 h2 {
   margin-top: 30px;
   font-size: 18px;
-  border-bottom: 1px solid #000;
   color: #333;
 }
 
@@ -251,8 +250,12 @@ h2 {
   margin-top: 10px;
 }
 .end a {
-  color: #FFF;
-  text-decoration: none;
+  color: #e74040;
+  text-decoration: underline;
+}
+
+.end a:hover {
+  color: #cb6363;
 }
 
 #stage.gameover .end {
