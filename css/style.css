@@ -146,6 +146,7 @@ div.screen { display: none; }
   -webkit-transition: all .4s ease-in;
   -moz-transition: all .4s ease-in;
   transition: all .4s ease-in;
+  position: relative;
 }
 
 .social a:hover {
