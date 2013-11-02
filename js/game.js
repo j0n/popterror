@@ -1,12 +1,12 @@
 (function($) {
 
   var config = getConfig();
-  var time = 0, score = 0, speed = 0, gameover = false, gameTime = 3 * 1000;
+  var time = 0, score = 0, speed = 0, gameover = false, gameTime = 60 * 1000;
   var reset = function() {
     score = 0;
     speed = config.song.speed;
     gameover = false;
-  }
+  };
   function gameOver() {
     gameover = true;
     $('#stage').addClass('gameover');

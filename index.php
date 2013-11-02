@@ -36,11 +36,11 @@
 
 
     <div id="menu" class="screen active">
+      <div class="forestback"></div>
+      <div class="forest"></div>
+      <div class="road"></div>
+
       <h1 class="logo">Popterror</h1>
-      <ul class="options">
-        <li><a href="#stage" class="button">Starta spel</a></li>
-        <li><a href="#highscore" class="button">Topplista</a></li>
-      </ul>
 
       <p class="instructions">
         Använd upp- och nedpilarna för att styra bilen. Undvik att krocka med
@@ -48,17 +48,25 @@
         har desto högre poäng får du!
       </p>
 
-      <h2>Följ oss lite här och där</h2>
+      <ul class="options">
+        <li><a href="#stage" class="button">Starta</a></li>
+      </ul>
+
       <ul class="social">
-        <li class="spotify">
-          <iframe src="https://embed.spotify.com/follow/1/?uri=spotify:artist:1acJ3usIJEYdIudcQ3ISsA&size=detail&theme=dark" width="300" height="56" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowtransparency="true"></iframe>
+        <li>
+          <a href="http://open.spotify.com/artist/1acJ3usIJEYdIudcQ3ISsA">
+            <img src="/assets/spotify.png" alt="Popterror på Spotify" />
+          </a>
         </li>
         <li>
-          <div class="fb-follow" data-href="http://www.facebook.com/popterror" data-width="300" data-height="100" data-colorscheme="light" data-layout="standard" data-show-faces="true"></div>
+          <a href="https://www.facebook.com/popterror">
+            <img src="/assets/facebook.png" alt="Popterror på Facebook" />
+          </a>
         </li>
         <li>
-          <a href="https://twitter.com/popterrormusik" class="twitter-follow-button" data-show-count="false" data-lang="sv" data-dnt="true">Följ @popterrormusik</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+          <a href="https://twitter.com/popterrormusik">
+            <img src="/assets/twitter.png" alt="Popterror på Twitter" />
+          </a>
         </li>
       </ul>
     </div>

@@ -1,7 +1,18 @@
+@font-face {
+    font-family: 'victors_pixel_fontregular';
+    src: url('victor-pixel-webfont.eot');
+    src: url('victor-pixel-webfont.eot?#iefix') format('embedded-opentype'),
+         url('victor-pixel-webfont.woff') format('woff'),
+         url('victor-pixel-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 body {
   background: #777 url('../assets/himmel.png');
   margin: 0;
-  font: 14px Helvetica, Arial, Verdana, sans-serif;
+  font: 14px victors_pixel_fontregular, Helvetica, Arial, Verdana, sans-serif;
   line-height: 1.4;
 }
 
@@ -26,12 +37,15 @@ div.screen { display: none; }
 .hidden { display: none; }
 
 .logo {
-  background: url("../assets/popterror.png") no-repeat;
-  height: 164px;
+  background: url("/assets/logowhite.png") no-repeat;
+  height: 82px;
   overflow: hidden;
-  margin: 0 auto 40px auto;
+  margin: 5px auto 40px -100px;
   text-indent: 100%;
-  width: 400px;
+  width: 200px;
+  position: absolute;
+  left: 50%;
+  top: 50px;
 }
 
 .screen {
@@ -41,17 +55,52 @@ div.screen { display: none; }
 }
 
 /* Menu */
-#menu {
-  background: #aaa;
-  background: rgba(255, 255, 255, .3);
-  box-shadow: 0 0 10px rgba(0, 0, 0, .4);
-  border-radius: 3px;
+.road {
+  background: url('/assets/vag_brun.png') repeat-x;
+  height: 192px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.car {
+  background: url('/assets/bil.png') no-repeat;
+  width: 240px;
+  height: 123px;
+  position: absolute;
+  bottom: 40px;
+  left: 20px;
+}
+
+.forestback {
+  background: url('/assets/trad_bak.png') repeat-x;
+  width: 100%;
+  position: absolute;
+  bottom: 190px;
+  height: 206px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.forest {
+  background: url('/assets/trad_fram.png') repeat-x;
+  width: 100%;
+  position: absolute;
+  bottom: 190px;
+  height: 157px;
+  z-index: 2;
 }
 
 .instructions {
   font-size: 14px;
   color: #eee;
-  font-style: italic;
+  max-width: 50%;
+  margin: auto;
+  text-align: justify;
+  position: absolute;
+  bottom: 120px;
+  left: 50%;
+  margin-left: -25%;
 }
 
 .options, .social {
@@ -59,16 +108,49 @@ div.screen { display: none; }
   margin: 20px auto;
 }
 
-.options { text-align: center; }
+.options {
+  text-align: center;
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
 
 .options li {
   display: inline-block;
+  margin: 0;
+  padding: 0;
+  width: auto;
+}
+
+.options a { margin: 0; }
+
+.social {
+  position: absolute;
+  left: 20px;
+  bottom: 310px;
+  z-index: 0;
 }
 
 .social li {
   display: block;
-  overflow: hidden;
-  margin: 30px 0;
+  margin: 0 30px 0 0;
+  float: left;
+  width: 70px;
+  text-align: center;
+}
+
+.social a {
+  -webkit-transition: all .4s ease-in;
+  -moz-transition: all .4s ease-in;
+  transition: all .4s ease-in;
+}
+
+.social a:hover {
+  position: relative;
+  top: -20px;
 }
 
 h2 {
@@ -82,7 +164,7 @@ h2 {
   display: block;
   border: 1px solid #aaa;
   background: #222;
-  padding: 5px 10px;
+  padding: 5px 10px 15px 10px;
   font-size: 18px;
   text-decoration: none;
   box-shadow: 1px 0 1px rgba(200, 200, 200, .3);
@@ -95,7 +177,7 @@ h2 {
   background: #555;
 }
 
-#stage {
+#stage, #menu {
   min-width: 480px;
   min-height: 320px;
   width: 100%;
@@ -108,21 +190,6 @@ h2 {
 }
 
 /* Retina */
-@media
-only screen and (-webkit-min-device-pixel-ratio: 2),
-only screen and (   min--moz-device-pixel-ratio: 2),
-only screen and (     -o-min-device-pixel-ratio: 2/1),
-only screen and (        min-device-pixel-ratio: 2),
-only screen and (                min-resolution: 192dpi),
-only screen and (                min-resolution: 2dppx) {
-
-  .logo {
-    background: url("../assets/popterror@2x.png") no-repeat;
-    background-size: 100%;
-  }
-
-}
-
 .score {
   display: block;
   width: 100px;
