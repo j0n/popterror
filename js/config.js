@@ -3,6 +3,6 @@ function getConfig () {
     song: {
       speed: -5
     },
-    url: 'http://popterror.se'
+    url: 'http://spel.popterror.se'
   }
 };
